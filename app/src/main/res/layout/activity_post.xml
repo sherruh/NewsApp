@@ -1,0 +1,33 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/image_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        />
+
+    <TextView
+        android:id="@+id/tex_title_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="contact det"
+        android:gravity="center_vertical"
+        android:textSize="25dp"
+        android:layout_below="@id/image_post"/>
+
+    <TextView
+        android:id="@+id/tex_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cDesc"
+        android:gravity="center_vertical"
+        android:textSize="15dp"
+        android:layout_below="@id/tex_title_post"/>
+
+
+
+</RelativeLayout>
