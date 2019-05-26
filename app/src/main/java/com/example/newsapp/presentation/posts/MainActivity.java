@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.newsapp.R;
 import com.example.newsapp.data.posts.IPostsRepositry;
 import com.example.newsapp.data.posts.PostsRepository;
+import com.example.newsapp.data.posts.local.LocalStorage;
 import com.example.newsapp.models.Post;
 import com.example.newsapp.presentation.post.PostActivity;
 import com.example.newsapp.presentation.posts.recycler.PostsAdapter;
@@ -30,7 +31,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         posts = new ArrayList<>();
-        PostsRepository postsRepository=new PostsRepository();
+
+        LocalStorage localStorage=new LocalStorage();
+        PostsRepository postsRepository=new PostsRepository(localStorage);
+
         recyclerView = findViewById(R.id.posts_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PostsAdapter(new ArrayList<Post>(),this);

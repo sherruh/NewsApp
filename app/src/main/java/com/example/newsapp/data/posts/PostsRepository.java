@@ -2,6 +2,7 @@ package com.example.newsapp.data.posts;
 
 import android.util.Log;
 
+import com.example.newsapp.data.posts.local.LocalStorage;
 import com.example.newsapp.data.posts.models.ResponseData;
 import com.example.newsapp.models.Post;
 
@@ -17,8 +18,14 @@ import retrofit2.http.Query;
 
 public class PostsRepository {
 
-    private static final String API_KEY="ec8a8cf88e4b479ca9a597669f5f2733";
-    private static final String BASE_URL="https://newsapi.org";
+    private LocalStorage localStorage;
+
+    public PostsRepository(LocalStorage localStorage) {
+        this.localStorage = localStorage;
+    }
+
+    private static final String API_KEY = "ec8a8cf88e4b479ca9a597669f5f2733";
+    private static final String BASE_URL = "https://newsapi.org";
 
     public static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -37,12 +44,13 @@ public class PostsRepository {
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 Log.d("MyApp", String.valueOf(response.body().getPosts().size()));
                 posts.addAll(response.body().getPosts());
+                localStorage.savePosts(posts);
                 postsCallback.onSucces(posts);
             }
 
             @Override
             public void onFailure(Call<ResponseData> call, Throwable t) {
-
+                localStorage.getPosts(postsCallback);
             }
         });
 
