@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.newsapp.App;
 import com.example.newsapp.R;
 import com.example.newsapp.data.posts.IPostsRepositry;
 import com.example.newsapp.data.posts.PostsRepository;
@@ -31,15 +32,11 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         posts = new ArrayList<>();
-
-        LocalStorage localStorage=new LocalStorage();
-        PostsRepository postsRepository=new PostsRepository(localStorage);
-
         recyclerView = findViewById(R.id.posts_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PostsAdapter(new ArrayList<Post>(),this);
         recyclerView.setAdapter(adapter);
-        postsRepository.getPosts(this);
+        App.postsRepositry.getPosts(this);// Получение списка постов из репозитория(удаленный или локальный)
     }
 
     @Override

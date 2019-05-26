@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public class PostsRepository {
+public class PostsRepository implements IPostsRepositry {
 
     private LocalStorage localStorage;
 
@@ -34,6 +34,7 @@ public class PostsRepository {
 
     public static PostsNetworkClient client=retrofit.create(PostsNetworkClient.class);
 
+    @Override
     public void getPosts(final IPostsRepositry.PostsCallback postsCallback){
         Call<ResponseData> call=client.getPosts(API_KEY);
 

@@ -5,7 +5,7 @@ import com.example.newsapp.models.Post;
 import java.util.List;
 
 public interface IPostsRepositry {
-    void getPosts();
+    void getPosts(PostsCallback postsCallback);
 
     public interface PostsCallback{
         void onSucces(List<Post> posts);
